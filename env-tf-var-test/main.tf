@@ -2,7 +2,6 @@ terraform {
   required_providers {
     }
   }
-}
 
 variable "bucketname" {
   type    = string
