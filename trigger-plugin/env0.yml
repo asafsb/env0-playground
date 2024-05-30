@@ -2,13 +2,13 @@ version: 2
 deploy:
   onSuccess:
     - name: Trigger Envrionment
-      use: https://github.com/env0/env0-project-level-workflow-triggers
+      use: https://github.com/env0/env0-project-level-workflow-triggers@correct-plugin
       inputs:
         downstream-environment: $TRIGGER_ENVIRONMENT
 
 destroy:
   onSuccess:
     - name: Trigger Envrionment
-      use: https://github.com/env0/env0-project-level-workflow-triggers
+      use: https://github.com/env0/env0-project-level-workflow-triggers@correct-plugin
       inputs:
         downstream-environment: $TRIGGER_ENVIRONMENT
