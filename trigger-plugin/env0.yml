@@ -5,6 +5,8 @@ deploy:
       use: https://github.com/env0/env0-workflow-triggers-plugin@feat-add-env0-workflow-triggers-plugin
       inputs:
         downstream-environment: $TRIGGER_ENVIRONMENT
+        env0-api-key: $ENV0_API_KEY
+        env0-api-secret: $ENV0_API_SECRET
 
 destroy:
   onSuccess:
@@ -12,3 +14,5 @@ destroy:
       use: https://github.com/env0/env0-workflow-triggers-plugin@feat-add-env0-workflow-triggers-plugin
       inputs:
         downstream-environment: $TRIGGER_ENVIRONMENT
+        env0-api-key: $ENV0_API_KEY
+        env0-api-secret: $ENV0_API_SECRET
