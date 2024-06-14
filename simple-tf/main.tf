@@ -23,7 +23,7 @@ resource "random_string" "random" {
   }
   length           = var.string_length
   upper            = true
-  special          = false
+  special          = true
 }
 
 output "random_string" {
