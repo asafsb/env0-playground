@@ -6,3 +6,4 @@ deploy:
        - name: "Terraform Apply: After"
          run: |
            ls -la
+           ls -la .terraform
