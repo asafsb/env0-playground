@@ -1,0 +1,8 @@
+version: 2
+deploy:
+  steps:
+   terraformApply:
+     after:
+       - name: "Terraform Apply: After"
+         run: |
+           ls -la
