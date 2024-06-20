@@ -5,5 +5,4 @@ deploy:
      after:
        - name: "Terraform Apply: After"
          run: |
-           ls -la
-           ls -la .terraform
+           cat $ENV0_TF_PLAN_JSON	
