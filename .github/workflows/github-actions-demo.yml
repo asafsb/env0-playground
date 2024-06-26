@@ -2,9 +2,12 @@ name: hello-world
 on:
   repository_dispatch:
   workflow_dispatch:
+    inputs:
+      env_id:
+
 jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
       - name: hellp-step
-        run: echo "Hello World!"
+        run: echo "Hello World! Deployed by ${{ github.event.inputs.env_id }}"
