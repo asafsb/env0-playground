@@ -1,0 +1,13 @@
+version: 2
+deploy:
+  steps:
+   terraformPlan:
+     after:
+       - name: "Terraform Plan: After"
+         run: |
+           cat $ENV0_TF_PLAN_JSON	
+   terraformApply:
+     after:
+       - name: "Terraform Apply: After"
+         run: |
+           cat $ENV0_TF_PLAN_JSON	
