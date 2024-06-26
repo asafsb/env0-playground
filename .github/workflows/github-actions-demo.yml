@@ -1,6 +1,7 @@
 name: hello-world
 on:
   repository_dispatch:
+  workflow_dispatch:
 jobs:
   my-job:
     runs-on: ubuntu-latest
