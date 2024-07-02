@@ -5,12 +5,12 @@ deploy:
      after:
        - name: "Terraform Apply: After"
          run: |
-           curl --request GET --url https://api.env0.com/deployments/$ENV0_DEPLOYMENT_LOG_ID/steps/tf%3Aapply/log --header 'accept: application/json' --header 'authorization: Basic "'"$ENV0_TOKEN"'"' --header 'content-type: application/json' > result.json
-           # APPLY_STATUS = $(jq '.events[-1].status' result.json)
-           # echo $APPLY_STATUS
-           jq '.events[-1].status' result.json
+           curl --request GET --url https://api.env0.com/deployments/$ENV0_DEPLOYMENT_LOG_ID/steps --header 'accept: application/json' --header 'authorization: Basic "'"$ENV0_TOKEN"'"' --header 'content-type: application/json' > apply_status.json
+           APPLY_STATUS = $(jq '[ .[] | select(.name=="tf:apply") ].[0].status' apply_status.json)
+           echo $APPLY_STATUS
            if [ "$APPLY_STATUS" != "SKIPPED" ] ; then
-             jq '.events[-1].message' result.json | grep -o 'Apply.*destroyed.'
+             curl --request GET --url https://api.env0.com/deployments/$ENV0_DEPLOYMENT_LOG_ID/steps/tf%3Aapply/log --header 'accept: application/json' --header 'authorization: Basic "'"$ENV0_TOKEN"'"' --header 'content-type: application/json' > apply_log.json
+             jq '.events[-1].message' apply_log.json | grep -o 'Apply.*destroyed.'
            else
              echo "Apply Skipped"
            fi
