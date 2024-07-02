@@ -8,7 +8,7 @@ deploy:
            curl --request GET --url https://api.env0.com/deployments/$ENV0_DEPLOYMENT_LOG_ID/steps --header 'accept: application/json' --header 'authorization: Basic "'"$ENV0_TOKEN"'"' --header 'content-type: application/json' > steps_status.json
            jq '[ .[] | select(.name=="tf:apply") ].[0].status' steps_status.json > apply_status.txt
            cat apply_status.txt
-           if [ "$(cat apply_status.txt") == "IN_PROGRESS" ] ; then
+           if [ "$(cat apply_status.txt)" == "IN_PROGRESS" ] ; then
              curl --request GET --url https://api.env0.com/deployments/$ENV0_DEPLOYMENT_LOG_ID/steps/tf%3Aapply/log --header 'accept: application/json' --header 'authorization: Basic "'"$ENV0_TOKEN"'"' --header 'content-type: application/json' > apply_log.json
              jq '.events[-1].message' apply_log.json | grep -o 'Apply.*destroyed.'
            else
