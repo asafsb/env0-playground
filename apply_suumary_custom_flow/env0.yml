@@ -8,3 +8,4 @@ deploy:
            curl --request GET --url https://api.env0.com/deployments/$ENV0_DEPLOYMENT_LOG_ID/steps/tf%3Aapply/log --header 'accept: application/json' --header 'authorization: Basic "'"$ENV0_TOKEN"'"' --header 'content-type: application/json' > result.json
            if [ "$(jq '.events[-1].status' result.json)" != "SKIPPED" ] ; then
              jq '.events[-1].message' result.json | grep -o 'Apply.*destroyed.'
+           fi
