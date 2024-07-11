@@ -1,3 +1,7 @@
+variable "policy_list_env" {
+  type = string
+}
+
 variable "policy_name" {
   type        = string
 }
