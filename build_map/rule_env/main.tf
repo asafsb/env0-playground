@@ -38,7 +38,7 @@ resource "env0_variable_set" "project_scope_var_set" {
 
   variable {
     name   = "policy_map"
-    value  = tostring(local.policy)
+    value  = join(",", [for key, value in local.policy : "${key}=${value}"])
     format = "hcl"
     type = "terraform"
   }
