@@ -38,7 +38,7 @@ resource "env0_variable_set" "project_scope_var_set" {
 
   variable {
     name   = "policy_map"
-    value  = local.policy
+    value  = tostring(local.policy)
     format = "hcl"
     type = "terraform"
   }
@@ -46,8 +46,8 @@ resource "env0_variable_set" "project_scope_var_set" {
 
 resource "env0_variable_set_assignment" "assignment" {
   scope    = "environment"
-  scope_id = data.env0_environment.id
+  scope_id = data.env0_environment.environment.id
   set_ids = [
-    env0_variable_set.project_scope_example.id
+    env0_variable_set.project_scope_var_set.id
   ]
 }
