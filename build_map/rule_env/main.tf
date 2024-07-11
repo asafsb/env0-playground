@@ -8,3 +8,15 @@ terraform {
 
 provider "env0" {
 }
+
+locals {
+  policy = {
+    name = var.policy_name
+    action = var.policy_action
+    protocol = var.policy_protocol
+  }
+}
+
+output "test" {
+  value = local.policy
+}
