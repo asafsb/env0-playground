@@ -17,3 +17,11 @@ variable "policy_action" {
 variable "policy_protocol" {
   type        = string
 }
+
+variable "env0_api_key" {
+  type        = string
+}
+
+variable "env0_api_secret" {
+  type        = string
+}
