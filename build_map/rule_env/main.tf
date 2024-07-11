@@ -53,6 +53,6 @@ resource "env0_configuration_variable" "json_variable" {
   name   = "policy-${var.policy_name}-${random_string.random.result}"
   type   = "terraform"
   value  = join(",", [for key, value in local.policy : "${key}=${value}"])
-  format = "HCL"
+  format = "json"
   environment_id = data.env0_environment.environment.id
 }
