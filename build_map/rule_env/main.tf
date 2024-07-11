@@ -49,25 +49,10 @@ data "env0_environment" "environment" {
   id = var.policy_list_env
 }
 
-
-resource "env0_variable_set" "project_scope_var_set" {
-  name        = "policy_variable-set-${random_string.random.result}"
-  description = "Rule policy ${var.policy_name}"
-  scope       = "project"
-  scope_id    = data.env0_project.project.id
-
-  variable {
-    name   = "policy_map"
-    value  = join(",", [for key, value in local.policy : "${key}=${value}"])
-    format = "hcl"
-    type = "terraform"
-  }
-}
-
-resource "env0_variable_set_assignment" "assignment" {
-  scope    = "environment"
-  scope_id = data.env0_environment.environment.id
-  set_ids = [
-    env0_variable_set.project_scope_var_set.id
-  ]
+resource "env0_configuration_variable" "json_variable" {
+  name   = "policy-${var.policy_name}-${random_string.random.result}"
+  type   = "terraform"
+  value  = join(",", [for key, value in local.policy : "${key}=${value}"])
+  format = "HCL"
+  environment_id = data.env0_environment.environment.id
 }
