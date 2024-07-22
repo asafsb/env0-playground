@@ -1,6 +1,13 @@
 version: 2
 deploy:
   steps:
+   terraformInit:
+     before:
+       - name: "Gcloud test"
+         run: |
+           gcloud version
+           sudo gcloud components update --version=484.0.0 --quiet
+           gcloud version	
    terraformPlan:
      after:
        - name: "Terraform Plan: After"
