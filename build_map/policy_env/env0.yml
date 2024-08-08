@@ -8,5 +8,6 @@ deploy:
        - name: "Create"
          run: |
            for var in "${!policy_@}"; do
-             printf '%s=%s\n' "$var" "${!var}"
+             printf '%s=%s\n' "$var" "${!var}" >> test.txt
            done
+           cat test.txt
