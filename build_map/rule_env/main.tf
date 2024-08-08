@@ -34,6 +34,8 @@ locals {
     name = var.name
     action = var.action
     protocol = var.protocol
+    src_smart_groups = var.src_smart_groups
+    dst_smart_groups = var.dst_smart_groups
   }
 }
 
