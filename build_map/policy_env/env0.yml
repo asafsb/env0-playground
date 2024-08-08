@@ -1,4 +1,6 @@
 version: 2
+shell: 
+  type: bash
 
 deploy:
   steps:
@@ -6,4 +8,6 @@ deploy:
      after:
        - name: "Create"
          run: |
-           echo "test"
+           for var in "${!policy_@}"; do
+             printf '%s=%s\n' "$var" "${!var}"
+           done
