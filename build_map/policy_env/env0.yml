@@ -8,7 +8,7 @@ deploy:
        - name: "Create"
          run: |
            touch test.txt
-           for var in "${!policy-@}"; do
-             printf '%s=%s\n' "$var" "${!var}" >> test.txt
-           done
+           for var in "${!policy-@}"; do \
+             printf '%s=%s\n' "$var" "${!var}" >> test.txt \
+           done \
            cat test.txt
