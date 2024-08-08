@@ -10,5 +10,5 @@ deploy:
            touch test.txt
            for var in "${!policy-@}"; do \
              printf '%s=%s\n' "$var" "${!var}" >> test.txt \
-           done \
+           done
            cat test.txt
