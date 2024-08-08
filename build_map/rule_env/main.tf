@@ -52,6 +52,6 @@ data "env0_environment" "environment" {
 resource "env0_configuration_variable" "json_variable" {
   name   = "policy-${var.name}-${random_string.random.result}"
   type   = "environment"
-  value  = flatten(jsonencode(local.policy))
+  value  = jsonencode(local.policy)
   environment_id = data.env0_environment.environment.id
 }
