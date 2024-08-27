@@ -6,7 +6,7 @@ allow[format(rego.metadata.rule())] {
 
 allow[format(rego.metadata.rule())] {
 	input.deploymentRequest.triggerName == "scheduled"
-    input.deployerUser.userId == "env0-system"
+    	input.deployerUser.userId == "env0-system"
 }
 
 any_resources_with_change {
