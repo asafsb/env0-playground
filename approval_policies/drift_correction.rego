@@ -15,6 +15,12 @@ allow[msg] {
 	msg := "approve automatically, drift correction"
 }
 
+allow[msg] {
+	input.deployerUser.userId != "env0-system"
+ 	count(input.approvers) > 0
+  	msg := sprintf("Approved by: %v", [input.approvers[0].name])
+}
+
 any_resources_with_change {
 	input.plan.resource_changes[_].change.actions[_] != "no-op"
 }
