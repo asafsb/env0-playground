@@ -9,4 +9,5 @@ deploy:
          run: |
            touch test.txt
            for var in "${!policy@}"; do echo "${!var}," >> test.txt ; done
-           cat test.txt
+           jq -nR '([inputs | select(length > 0)]) | {"resource":{"aviatrix_distributed_firewalling_policy_list":{"policy name":{"policies":.,}}}}' test.txt > policy.tf.json
+           cat policy.tf.json
