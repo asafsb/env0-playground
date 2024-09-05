@@ -8,6 +8,7 @@ deploy:
        - name: "Create"
          run: |
            touch test.txt
-           for var in "${!policy@}"; do echo "${!var}," >> test.txt ; done
+           for var in "${!policy@}"; do echo "${!var}" >> test.txt ; done
+           cat test.txt
            jq -n '([inputs | select(length > 0)]) | {"resource":{"aviatrix_distributed_firewalling_policy_list":{"policy_name":{"policies":.,}}}}' test.txt > policy.tf.json
            cat policy.tf.json
