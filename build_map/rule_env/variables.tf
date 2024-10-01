@@ -1,8 +1,10 @@
 variable "policy_list_env" {
+  description = "The env0 environment ID for the policy environment"
   type = string
 }
 
 variable "policy_list_proj" {
+  description = "The env0 project ID of the policy environment"
   type = string
 }
 
