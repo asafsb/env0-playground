@@ -1,0 +1,16 @@
+version: 2
+deploy:
+  steps:
+   terraformInit:
+      before:
+        - name: test var init
+          run: |
+            echo $AFTER_APPROVE
+   terraformPlan:
+      after:
+        - name: Set Var
+          run: |
+            echo AFTER_APPROVE=true >> $ENV0_ENV
+        - name: test Var after plan
+          run: |
+            echo $AFTER_APPROVE
